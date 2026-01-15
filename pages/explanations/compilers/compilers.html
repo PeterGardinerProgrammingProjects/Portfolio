@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>
+    	Compilers Explanation
+  	</title>
+  	<link rel="stylesheet" href="../../../styles/default_style.css">
+    <link rel="stylesheet" href="../../../styles/projects.css">
+	</head>
+  
+	<body>
+
+    <header>
+
+      <div calss="header-buttons">
+        <a href="../../../index.html" class="home-button">
+         <img src="../../../images/home_icon.png" alt="Return Home">
+        </a>
+
+        <a href="../../../index.html" class="home-button">
+          <img src="../../../images/home_icon.png" alt="Return Home">
+        </a>
+      </div>
+
+      <h1>
+        Portfolio of Peter Gardiner
+      </h1>
+
+		</header>
+
+    <h2 class="project-title">
+      What are Compilers?
+    </h2>
+
+    <p class="project-paragraph">
+      Compilers are what turn human readable source code into instructions
+	  a computer can understand and run. Technically a compiler is just one
+	  part of this process, but that is not important for now. A compiler
+	  follows many steps, and many will be skipped. The first step is 
+	  tokenization, the process of breaking down the code into its component
+	  pieces. For example, the code 
+	  <span class="code-snippet">for(int i = 0; i &lt; length; i++)</span> has 
+	  the tokens 
+	  <span class="code-snippet">["for", "(", "int", "i", "=", "0", ";",...]</span>
+	   (at this point the tokens are just numbers instead of characters). 
+	  The compiler then gives these ordered tokens to a parser, which checks
+	  the validity of the code. If the parser gets the nonsense tokens 
+	  <span class="code-snippet">["for", ")", "0", "while",...]</span>,
+    it will give a compiler error, which means the code was invalid. If it
+    gets valid tokens, it puts them into groups for the next steps. For 
+    example, the code 
+    <span class="code-snippet">a + b * c</span>
+    should be interpreted as 
+    <span class="code-snippet">a + (b * c)</span>
+    and not 
+    <span class="code-snippet">(a + b) * c</span>. 
+    This is what the parser does. There are too many steps to list here,
+    but eventually the compiler turns this data into machine instructions 
+    which the computer can understand. In fact, compilers do more than 
+    just translating, they also optimize. This means that they can 
+    analyze how code will run and change it to produce the same result in 
+    less steps. For example, this statement can always be ignored: 
+    <span class="code-snippet">if (2 + 2 == 5) { DoFunction(); }</span>.
+    There is a lot more to compiler optimizations, too much to explain here.
+    </p>
+		
+	</body>
+</html>
