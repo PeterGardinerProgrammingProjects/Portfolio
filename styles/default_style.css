@@ -14,6 +14,7 @@ body {
 	flex-direction: column;
 	align-items: flex-start;
 	background-color: oklch(15.434% 0.00002 271.152);
+	padding-bottom: 100px;
 }
 
 header {
@@ -25,6 +26,7 @@ header {
 	display: flex;
 	align-items: center;
 	padding: 10px 20px;
+	margin-bottom: 20px;
 }
 
 header h1 {
@@ -39,7 +41,39 @@ header h1 {
 	gap: 8px;
 }
 
-.home-button img {
+.header-button img {
 	width: 75px;
 	height: 75px;
+}
+
+.paragraph {
+	color: rgb(184, 184, 184);
+	align-self: center;
+	font-size: 18px;
+	width: 50%;
+	max-width: 900px;
+	text-indent: 2em;
+	margin: 10px;
+	line-height: 30px;
+}
+
+.math-text {
+	color: rgb(255, 255, 255);
+	align-self: center;
+	font-size: 18px;
+	width: 50%;
+	max-width: 900px;
+	text-indent: 2em;
+	margin: 10px;
+	line-height: 30px;
+}
+
+.hyperlink {
+	color: white;
+	font-size: 18px;
+	margin: 0px;
+	padding: 0px;
+	align-self: flex-start;
+	display: inline;
+	text-decoration: underline;
 }

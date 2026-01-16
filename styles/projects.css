@@ -16,28 +16,6 @@
 	max-width: 900px;
 }
 
-.project-paragraph {
-	color: rgb(201, 201, 201);
-	align-self: center;
-	font-size: 18px;
-	width: 50%;
-	max-width: 900px;
-	text-indent: 2em;
-	margin: 10px;
-	line-height: 30px;
-}
-
-.hyperlink {
-	color: white;
-	font-size: 18px;
-	margin: 0px;
-	padding: 0px;
-	align-self: flex-start;
-	display: inline;
-	font-weight: 700;
-	text-decoration: underline;
-}
-
 .code-snippet {
 	font-family: monospace;
 	color: white;
