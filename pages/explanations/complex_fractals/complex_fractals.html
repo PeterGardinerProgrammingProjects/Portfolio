@@ -41,12 +41,57 @@
       <a class="hyperlink" href="../complex_numbers/complex_numbers.html">
         complex numbers
       </a>
-      to understand this explanation.
+      to understand this explanation. Fractals are mathematical objects which
+      have detail at any scale. Usually, if you zoom into a section of a graph 
+      or a surface, it approaches a line or a plane. Often, fractals are 
+      self-similar, meaning that it contains smaller copies of itself, but this
+      is not a requirement. 
+    </p>
+
+    <p class="paragraph">
+      The Mandelbrot Set is a fractal in the complex plane. It is likely the most
+      famous fractal, and it is defined, in part, by this equation.
     </p>
 
     <p class="math-text">
       $$ z_n=z_{n-1}^2+c $$
     </p>
 		
+    <p class="paragraph">
+      The Mandelbrot Set is a set of complex numbers. This equation is used to
+      determine whether or not a particular number, <span class="code-snippet">c</span>, is in the set. It starts
+      with <span class="code-snippet">z = 0</span>. Through this recursive 
+      function, we can find the next value of z, and the next, and so on. Once
+      we have evaluated the function an infinite number of times, we cand decide
+      whether or not <span class="code-snippet">c</span> is in the set. If 
+      <span class="code-snippet">z</span> grew without bound (reached infinity),
+      then <span class="code-snippet">c</span> is not in the Mandelbrot Set.
+      Otherwise, it is. Let's see an example with <span class="code-snippet">c = 1 + 0i</span>.
+      Remember, <span class="code-snippet">z</span> starts at zero.
+    </p>
+
+    <p class="math-text">
+      $$ z_1=z_{0}^2+1=1 $$
+    </p>
+
+    <p class="math-text">
+      $$ z_2=1^2+1=2 $$
+    </p>
+
+    <p class="math-text">
+      $$ z_3=2^2+1=5 $$
+    </p>
+
+    <p class="math-text">
+      $$ z_4=5^2+1=26 $$
+    </p>
+
+    <p class="paragraph">
+      It is clear that <span class="code-snippet">c = 1 + 0i</span> is not
+      in the Mandelbrot set, because this value causes <span class="code-snippet">z</span>
+      to grow endlessly. There are more complex fractals, like Julia sets,
+      which are related to the Mandelbrot Set.
+    </p>
+
 	</body>
 </html>
