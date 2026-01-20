@@ -10,6 +10,8 @@
 	  <script id="MathJax-script" src="../../../javascript/MathJax-master/tex-mml-chtml.js"></script>
   	<link rel="stylesheet" href="../../../styles/default_style.css">
     <link rel="stylesheet" href="../../../styles/projects.css">
+    <link rel="icon" href="images/icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
 	</head>
   
 	<body>
@@ -60,14 +62,14 @@
     <p class="paragraph">
       For a while now, CPUs have had multiple cores. Cores are effectively smaller
       CPUs which can work together, and having many cores can increase performance
-      through multi-threading. Without telling the CPU otherwise, it will only use
+      through multithreading. Without telling the CPU otherwise, it will only use
       one core to do operations. This is because many programs cannot take advantage
       of multiple cores effectively. For example, a recursive function needs to be
       calculated sequentially, and having cores work in parallel does no good.
-      It is also more difficult to design a multi-threaded program because of race
+      It is also more difficult to design a multithreaded program because of race
       conditions. These happen when two threads read from or write to the same piece
       of data at the same time. This leads to data being corrupted, which can crash programs.
-      For problems which can be parallelized, multi-threading can vastly speed up
+      For problems which can be parallelized, multithreading can vastly speed up
       computation time. 
     </p>
 
