@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>
+    	Quadratic Integral
+  	</title>
+    <script id="MathJax-script" src="../../../javascript/MathJax-master/tex-mml-chtml.js"></script>
+  	<link rel="stylesheet" href="../../../styles/default_style.css">
+    <link rel="stylesheet" href="../../../styles/projects.css">
+    <link rel="icon" href="../../../images/icon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../images/icon.ico" type="image/x-icon">
+	</head>
+	<body>
+
+    <header>
+
+      <div calss="header-buttons">
+        <a href="../../../index.html" class="header-button">
+         <img src="../../../images/home_icon.png" alt="Return Home">
+        </a>
+
+        <a href="../../explanations/explanations.html" class="header-button">
+          <img src="../../../images/question_mark.png" alt="Explanations">
+        </a>
+      </div>
+
+      <h1>
+        Portfolio of Peter Gardiner
+      </h1>
+
+		</header>
+
+    <div class="three-columns">
+      <div>
+
+      </div>
+
+      <div>
+        <h2 class="project-title">
+          The General Form of the Integral of Quadratic Polynomials
+        </h2>
+        
+        <p class="explanation-disclaimer">
+          In this article I mention concepts you may be unfamiliar with.
+          Click on the links to see my explanation of them!
+        </p>
+        
+        <p class="paragraph">
+          This project involves a basic understanding of calculus, and 
+          unfortunately I do not have an explanation page available due
+          to calculus being such a large topic. With that being said, I 
+          found the antiderivative of all square roots quadratic polynomials.
+        </p>
+
+        <p class="paragraph">
+          Here is what that means. Quadratic polynomials are polynomials 
+          which have a highest degree of 2, and they can be shown by any
+          equation which follows the form
+        </p>
+
+        <p class="math-text">
+          $$ ax^{2} + bx + c $$
+        </p>
+
+        <p class="paragraph">
+          where a, b, and c are constants.
+        </p>
+
+        <p class="paragraph">
+          Finding the antiderivative (integral) of a polynomial is trivial.
+          This is because they only consist of constants times a variable
+          to an integer power, and each term is summed. It is significantly
+          more difficult to find the integral of the square root of quadratic
+          polynomials. While for some it is trivial (like the square root of
+          x squared), most of these functions create ellipses or hyperbolas.
+          These shapes are quite complicated to integrate, and there has to 
+          be one formula for them all.
+        </p>
+
+        <p class="paragraph">
+          I was inspired by my calculus 2 class to find this integral. I was
+          learning about trigonometric substitution to find integrals similar
+          to the general form, but much less complex. Trigonometric substitution
+          works by replacing part of the integral with a trigonometric function
+          temporarily to apply useful trigonometric identities to simplify
+          the integral. To use these techniques, I needed to change the 
+          form of the quadratic. I needed it in the form
+        </p>
+
+        <p class="math-text">
+          $$ A(x-B)^{2} + C $$
+        </p>
+
+        <p class="paragraph">
+          Now I had to convert the original polynomial into this one. This 
+          was pretty simple, because the form I needed it in is vertex form.
+          The vertex of a polynomial is at the point (B, C) when following 
+          vertex form. The vertex is also where the derivative equals zero, so 
+          I did some calculus to find that
+        </p>
+
+        <p class="math-text">
+          $$ A = a $$
+        </p>
+
+        <p class="math-text">
+          $$ B = -\frac{b}{2a} $$
+        </p>
+
+        <p class="math-text">
+          $$ C = -\frac{b^{2}}{4a} + c $$
+        </p>
+
+        <p class="paragraph">
+          Now I could start substituting. Well, almost. I will simplify the 
+          interior of the square root.
+        </p>
+
+        <p class="math-text">
+          $$ \int{\sqrt{A(x-B)^{2} + C}}\,dx $$
+        </p>
+
+        <p class="math-text">
+          $$ \sqrt{A}\int{\sqrt{(x-B)^{2} + \frac{C}{A}}}\,dx $$
+        </p>
+
+        <p class="paragraph">
+          Substitution time! I am using hyperbolic trigonometry because it is 
+          better defined (no holes) and it has the trigonometric idendity I 
+          need.
+        </p>
+
+        <p class="math-text">
+          $$ \cosh^2{x} - \sinh^2{x} = 1 $$
+        </p>
+
+        <p class="math-text">
+          $$ x - B = \sqrt{\frac{C}{A}}\sinh{\theta} $$
+        </p>
+
+        <p class="math-text">
+          $$ dx = \sqrt{\frac{C}{A}}\cosh{\theta}\,d\theta $$
+        </p>
+
+        <p class="math-text">
+          $$ \sqrt{A}\int{\sqrt{(\sqrt{\frac{C}{A}}\sinh{\theta})^{2} + \frac{C}{A}}}\sqrt{\frac{C}{A}}\cosh{\theta}\,d\theta $$
+        </p>
+
+        <p class="math-text">
+          $$ \sqrt{C}\int{\sqrt{\frac{C}{A}\sinh^2{\theta} + \frac{C}{A}}}\cosh{\theta}\,d\theta $$
+        </p>
+
+        <p class="math-text">
+          $$ \sqrt{C}\sqrt{\frac{C}{A}}\int{\sqrt{\sinh^2{\theta} + 1}}\cosh{\theta}\,d\theta $$
+        </p>
+
+        <p class="math-text">
+          $$ \frac{C}{\sqrt{A}}\int{\sqrt{\cosh^2{\theta}}}\cosh{\theta}\,d\theta $$
+        </p>
+
+        <p class="math-text">
+          $$ \frac{C}{\sqrt{A}}\int{\cosh^2{\theta}}\,d\theta $$
+        </p>
+
+        <p class="paragraph">
+          That was a lot of math! But now the integral is significantly more 
+          simple. What is nice about hyperbolic trigonometry is that its sine
+          and cosine functions are just exponetial functions added, and these 
+          are very easy to integrate and differentiate. Here we can simplify it.
+        </p>
+
+        <p class="math-text">
+          $$ \frac{C}{\sqrt{A}}\int{\cosh^2{\theta}}\,d\theta = \frac{1}{4}\sinh{2\theta} + \frac{1}{2}\theta$$
+        </p>
+
+        <p class="paragraph">
+          This is the answer in terms of theta, but we want it in terms of x.
+        </p>
+
+        <p class="math-text">
+          $$ \theta = \sinh^{-1}{(\frac{x - B}{\sqrt{\frac{C}{A}}})}$$
+        </p>
+
+        <p class="math-text">
+          $$ \frac{1}{4}\sinh{2\theta} + \frac{1}{2}\theta = $$
+        </p>
+
+        <p class="math-text">
+          $$ \frac{1}{4}\sinh{(2\sinh^{-1}{(\frac{x - B}{\sqrt{\frac{C}{A}}})})} + \frac{1}{2}(\sinh^{-1}{(\frac{x - B}{\sqrt{\frac{C}{A}}})}) $$
+        </p>
+
+        <p class="paragraph">
+          At this point, we are done. We have found the antiderivative in terms
+          of x. But, we can simplify further with the identity 
+        </p>
+
+        <p class="math-text">
+          $$ \sinh^{-1}{x} = \ln{(x + \sqrt{x^2+1})} $$
+        </p>
+
+        <p class="paragraph">
+          After a lot of algebra, we finally get the simplified answer.
+        </p>
+
+        <p class="math-text">
+          $$ \int{\sqrt{ax^2 + bx + c}}\,dx =  $$
+        </p>
+
+        <p class="math-text" style="font-size: 18px;">
+          $$ \frac{2ax+b}{4a}\sqrt{ax^2 + bx + c} + \frac{4ac - b^2}{8a^2}\ln{(\frac{2ax+b+2\sqrt{a}\sqrt{ax^2 + bx + c}}{\sqrt{4ac-b^2}})}\sqrt{a} $$
+        </p>
+
+      </div>
+
+      <div>
+        
+      </div>
+
+    </div>
+
+	</body>
+</html>

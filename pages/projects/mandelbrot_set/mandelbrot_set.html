@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>
@@ -10,6 +11,7 @@
   <link rel="icon" href="../../../images/icon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="../../../images/icon.ico" type="image/x-icon">
 </head>
+
 <body>
   <header>
 
@@ -30,122 +32,137 @@
 
   </header>
 
-  <h2 class="project-title">
-    Mandelbrot Set Renderer
-  </h2>
+  <div class="three-columns">
+    <div>
 
-  <p class="explanation-disclaimer">
-    In this article I mention concepts you may be unfamiliar with.
-    Click on the links to see my explanation of them!
-  </p>
+    </div>
 
-  <p class="paragraph">
-    I created a
-    <a class="hyperlink" href="../../explanations/CPU/CPU.html">CPU</a>
-    based Mandelbrot Set renderer using the C programming language. My goals
-    for this project were to have high precision and good performance. I have
-    made fractal renderers before on the 
-    <a class="hyperlink" href="../../explanations/GPU/GPU.html">GPU</a>, but
-    these were not very precise, which means you cannot zoom into the fractal
-    as far as I would like. This is because most GPUs only support 16-bit 
-    floating point numbers, while CPUs support 64-bit floating point numbers.
-    This means that CPUs allow for significantly more detail, although they
-    are slower than GPUs for this task.
-  </p>
+    <div>
+      <h2 class="project-title">
+        Mandelbrot Set Renderer
+      </h2>
 
-  <p class="paragraph">
-    If CPUs are relatively slow, and GPUs lack precision, what do I do? I decided
-    to use multithreading, which means I use more of the CPU's cores. For my CPU,
-    this means a roughly 5 times speed increase. This is still slower than the 
-    GPU, but this is the best compromise. It is also an excuse for me to learn
-    multithreading.
-  </p>
+      <p class="explanation-disclaimer">
+        In this article I mention concepts you may be unfamiliar with.
+        Click on the links to see my explanation of them!
+      </p>
 
-  <p class="paragraph">
-    I started the project by only using one thread to generate the image and
-    I wrote the image data to a file. The rendering took multiple steps. The
-    first was to get pixel coordinates (think 312, 450) and convert them into
-    complex numbers to start the calcuations. This was pretty simple, as it is
-    just linearly interpolating the x and y values into the view specified by
-    the radius of the square image and the center. When the user clicks on the
-    screen, the center moves there, and the image radius decreases when the user
-    zooms in.
-  </p>
+      <p class="paragraph">
+        I created a
+        <a class="hyperlink" href="../../explanations/CPU/CPU.html">CPU</a>
+        based Mandelbrot Set renderer using the C programming language. My goals
+        for this project were to have high precision and good performance. I have
+        made fractal renderers before on the
+        <a class="hyperlink" href="../../explanations/GPU/GPU.html">GPU</a>, but
+        these were not very precise, which means you cannot zoom into the fractal
+        as far as I would like. This is because most GPUs only support 16-bit
+        floating point numbers, while CPUs support 64-bit floating point numbers.
+        This means that CPUs allow for significantly more detail, although they
+        are slower than GPUs for this task.
+      </p>
 
-  <p class="paragraph">
-    Now that I knew what value each pixel corresponded to, I could evaluate the
-    Mandelbrot Set formula. If the pixel was considered in the set after the last
-    iteration, it would be colored black. Otherwise, it would be a shade of gray
-    where white is almost in the set and black is far outside. This worked, but 
-    I wanted to speed up the image generation. This is when I added multithreading.
-    Before I started, I had to determine how many threads I should create and how
-    the work should be split up. I found my CPU has 4 cores, but 8 logical processors.
-    From what I could find, logical processors are kind of like mini cores, but they
-    share components with each other and are not as seperate or parallelizable as cores.
-    Still, I found that for optimal performance I should have 8 threads to get around
-    a 5 times speed increase.
-  </p>
+      <p class="paragraph">
+        If CPUs are relatively slow, and GPUs lack precision, what do I do? I decided
+        to use multithreading, which means I use more of the CPU's cores. For my CPU,
+        this means a roughly 5 times speed increase. This is still slower than the
+        GPU, but this is the best compromise. It is also an excuse for me to learn
+        multithreading.
+      </p>
 
-  <p class="paragraph">
-    Before starting, I knew that multithreading is fastest when each thread has the same
-    amount of work. This is because the image cannot be shown until each thread has 
-    finished its task, so if one thread has more work the other threads have to wait on
-    it to finish. The task is only as fast as its slowest thread. This led me to give
-    each thread alternating columns with seven colums being ignored for other threads
-    to handle and one for this thread. This is because this splits the image into sections
-    that are roughly equal because the Mandelbrot Set does not have tightly packed 
-    variation in vertical bars.
-  </p>
+      <p class="paragraph">
+        I started the project by only using one thread to generate the image and
+        I wrote the image data to a file. The rendering took multiple steps. The
+        first was to get pixel coordinates (think 312, 450) and convert them into
+        complex numbers to start the calcuations. This was pretty simple, as it is
+        just linearly interpolating the x and y values into the view specified by
+        the radius of the square image and the center. When the user clicks on the
+        screen, the center moves there, and the image radius decreases when the user
+        zooms in.
+      </p>
 
-  <p class="paragraph">
-    After getting the multithreading working, I wanted to change how the user interacted
-    with the program. Up to this point, the user specified what complex value they 
-    wanted to center at and how zoomed in they wanted to be, and then the program created
-    an image and saved it. The issue with this is that the user does not know what points
-    or zoom levels to target without seeing the image. I wanted to create an interative
-    program that allows the user to explore. This requires a window to open and for input
-    to be detected and handled. This functionallity is provided by raylib, a C library
-    used for many applications, usually games. I chose raylib because it is very simple
-    (I did not need much) and it is not large, so I am not needlessly adding a significant
-    amount to the program.
-  </p>
+      <p class="paragraph">
+        Now that I knew what value each pixel corresponded to, I could evaluate the
+        Mandelbrot Set formula. If the pixel was considered in the set after the last
+        iteration, it would be colored black. Otherwise, it would be a shade of gray
+        where white is almost in the set and black is far outside. This worked, but
+        I wanted to speed up the image generation. This is when I added multithreading.
+        Before I started, I had to determine how many threads I should create and how
+        the work should be split up. I found my CPU has 4 cores, but 8 logical processors.
+        From what I could find, logical processors are kind of like mini cores, but they
+        share components with each other and are not as seperate or parallelizable as cores.
+        Still, I found that for optimal performance I should have 8 threads to get around
+        a 5 times speed increase.
+      </p>
 
-  <p class="paragraph">
-    With raylib, I could change the computation logic. At first, I had it do all the
-    iterations and then display the resulting image. Now that I could have a dynamic
-    image, I had it display an image each iteration so you can see the progress made.
-    This animation was a cool effect and gave insight on how the image is calculated.
-    At first, the entire image is black, because the program assumes everything is
-    in the Mandelbrot Set. But after each iteration, more pixels are found to be
-    outside the set and are colored appropriately, giving more and more detail. 
-  </p>
+      <p class="paragraph">
+        Before starting, I knew that multithreading is fastest when each thread has the same
+        amount of work. This is because the image cannot be shown until each thread has
+        finished its task, so if one thread has more work the other threads have to wait on
+        it to finish. The task is only as fast as its slowest thread. This led me to give
+        each thread alternating columns with seven colums being ignored for other threads
+        to handle and one for this thread. This is because this splits the image into sections
+        that are roughly equal because the Mandelbrot Set does not have tightly packed
+        variation in vertical bars.
+      </p>
 
-  <p class="paragraph">
-    At this point, I wanted to change the coloring of the pixels in two ways. I 
-    wanted to add color and change the value used to calculate the color. Currently,
-    the pixels are given a brightness value from 0 to 255 based on how many iterations
-    it took to find out the pixel is not in the Mandelbrot Set. This leads to clear
-    bands and borders at areas that take a different number of iterations. I found 
-    a formula other Mandelbrot Set renderers use to approximate the fractional component
-    of a pixel's final iteration. This means that a pixel that took 4 iterations, but 
-    is really close to taking 5, would be colored closer to the 5 value. The next step
-    I wanted to take was to add color.
-  </p>
+      <p class="paragraph">
+        After getting the multithreading working, I wanted to change how the user interacted
+        with the program. Up to this point, the user specified what complex value they
+        wanted to center at and how zoomed in they wanted to be, and then the program created
+        an image and saved it. The issue with this is that the user does not know what points
+        or zoom levels to target without seeing the image. I wanted to create an interative
+        program that allows the user to explore. This requires a window to open and for input
+        to be detected and handled. This functionallity is provided by raylib, a C library
+        used for many applications, usually games. I chose raylib because it is very simple
+        (I did not need much) and it is not large, so I am not needlessly adding a significant
+        amount to the program.
+      </p>
 
-  <p class="paragraph">
-    A gray-scale image is pretty boring. This is why I wanted to add color. I wanted
-    to have a rainbow-like effect where the hue changes from a starting point and goes
-    over some number of loops around the color wheel. I also wanted to use the Oklab
-    color space. A color space is just a way of organizing colors, like red green and 
-    blue or hue saturation and value. Oklab is a perceptual color space. This means 
-    that changing the hue does not change the percieved brightness and vice versa, unlike
-    typical color spaces. The issue is that monitors and images expect RGB values, so 
-    I need to convert between them to use Oklab. C does not have this built in, so I
-    had to implement this on my own. I had an error where the colors were only red, green,
-    and blue with no real gradient between them. This is because Oklab can represent colors
-    that RGB cannot, so when these illegal colors were converted they were clamped, which
-    caused artifacts. I simply changed the parameters of the Oklab values to fix this.
-  </p>
+      <p class="paragraph">
+        With raylib, I could change the computation logic. At first, I had it do all the
+        iterations and then display the resulting image. Now that I could have a dynamic
+        image, I had it display an image each iteration so you can see the progress made.
+        This animation was a cool effect and gave insight on how the image is calculated.
+        At first, the entire image is black, because the program assumes everything is
+        in the Mandelbrot Set. But after each iteration, more pixels are found to be
+        outside the set and are colored appropriately, giving more and more detail.
+      </p>
+
+      <p class="paragraph">
+        At this point, I wanted to change the coloring of the pixels in two ways. I
+        wanted to add color and change the value used to calculate the color. Currently,
+        the pixels are given a brightness value from 0 to 255 based on how many iterations
+        it took to find out the pixel is not in the Mandelbrot Set. This leads to clear
+        bands and borders at areas that take a different number of iterations. I found
+        a formula other Mandelbrot Set renderers use to approximate the fractional component
+        of a pixel's final iteration. This means that a pixel that took 4 iterations, but
+        is really close to taking 5, would be colored closer to the 5 value. The next step
+        I wanted to take was to add color.
+      </p>
+
+      <p class="paragraph">
+        A gray-scale image is pretty boring. This is why I wanted to add color. I wanted
+        to have a rainbow-like effect where the hue changes from a starting point and goes
+        over some number of loops around the color wheel. I also wanted to use the Oklab
+        color space. A color space is just a way of organizing colors, like red green and
+        blue or hue saturation and value. Oklab is a perceptual color space. This means
+        that changing the hue does not change the percieved brightness and vice versa, unlike
+        typical color spaces. The issue is that monitors and images expect RGB values, so
+        I need to convert between them to use Oklab. C does not have this built in, so I
+        had to implement this on my own. I had an error where the colors were only red, green,
+        and blue with no real gradient between them. This is because Oklab can represent colors
+        that RGB cannot, so when these illegal colors were converted they were clamped, which
+        caused artifacts. I simply changed the parameters of the Oklab values to fix this.
+      </p>
+
+    </div>
+
+    <div>
+
+    </div>
+
+  </div>
 
 </body>
+
 </html>
