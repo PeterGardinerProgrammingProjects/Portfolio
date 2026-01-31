@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<title>
+    	Ray Tracer
+  	</title>
+  	<link rel="stylesheet" href="../../../styles/default_style.css">
+    <link rel="stylesheet" href="../../../styles/projects.css">
+    <link rel="icon" href="../../../images/icon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="../../../images/icon.ico" type="image/x-icon">
+	</head>
+	<body>
+
+    <header>
+
+      <div calss="header-buttons">
+        <a href="../../../index.html" class="header-button">
+         <img src="../../../images/home_icon.png" alt="Return Home">
+        </a>
+
+        <a href="../../explanations/explanations.html" class="header-button">
+          <img src="../../../images/question_mark.png" alt="Explanations">
+        </a>
+      </div>
+
+      <h1>
+        Portfolio of Peter Gardiner
+      </h1>
+
+		</header>
+
+    <h2 class="project-title">
+      Ray Tracer
+    </h2>
+
+    <p class="explanation-disclaimer">
+      In this article I mention concepts you may be unfamiliar with.
+      Click on the links to see my explanation of them!
+    </p>
+
+    <p class="paragraph">
+      I created my own ray tracer on the <a class="hyperlink" href="../../explanations/GPU/GPU.html">GPU</a> because I am interested in
+	  3D rendering and how computers create realistic images. Ray tracing
+	  is the technique used to make realistic scenes in games and movies,
+	  and I will give a breif explanation as to how it works while I share
+	  the process I took to implement it.
+    </p>
+
+	<p class="paragraph">
+		Ray tracing simulates how light moves, interacts, and reflect off
+		of objects to get an approximation of how something would look in 
+		real life. It traces each ray of light, hence the name. In real 
+		life, light is emitted from a light source, it bounces around, and 
+		most of it flies away from the camera. A camera can only detect 
+		the light which hits its sensor, so calculating the paths of all
+		the light in a scene is wasteful. Ideally, we would only simulate 
+		the light which hits the camera. Because the light is reversible,
+    we can start the light from the camera and color it based off of
+    what light source it hits, making it much more efficient.
+	</p>
+
+	<p class="paragraph">
+		Before going any further, how does one actually get the computer
+    to do this? Here is how it works. For every pixel on the screen,
+    we calculate a starting point and direction on the camera sensor.
+    We do this with a camera matrix, which is a mathematical object 
+    that contains the camera data needed. After we have the starting
+    point, we move it in the direction we have. This is a ray. Once
+    it intersects something, it bounces off. But how?
+	</p>
+
+  <p class="paragraph">
+    My ray tracer current only supports sphere rendering, because 
+    there is a simple algorithm to find where a ray intersects a 
+    sphere. More general ray tracers use triangles, which can create
+    any 3D object, but to make the interction algorithm efficient with
+    thousands of triangles there is a lot of added complexity. Anyways,
+    when the ray hits the sphere, we reflect it at the same angle it 
+    came in. To do this, we need to use the normal vector of the surface,
+    which is just the direction facing outwards from the object. The ray
+    keeps track of what color the object is for future reference.
+  </p>
+
+  <p class="paragraph">
+    Wait a minute, wouldn't this make each surface look like a perfect 
+    mirror? That is very limiting. How do we add roughness? When light
+    hits a rough surface, it scatters in all directions. This means 
+    that when we hit a rough material, the ray should go in a random 
+    direction. If it is a less rough material, it should be biased in 
+    the mirror direction. The issue with this is that two nearby pixels
+    will have wildly different paths on rough surfaces, leading to high
+    levels of noise. This can be fixed by having more rays per pixel
+    and averaging the value to get a better approximation. 
+  </p>
+
+  <p class="paragraph">
+    That is about all there is from a high level perspective. I made 
+    this ray tracer in the Unity game engine. This is for a few reasons.
+    Unity has useful built-in features, like handling input and easy 
+    shader (GPU code) integration. For example, the camera math was very 
+    easy to implement because Unity has a built-in feature to handle it.
+    I am interested in creating a ray tracer independent from Unity or 
+    another game engine with an API like OpenGL or Vulkan, but that will
+    be at another time.
+  </p>
+
+
+	</body>
+</html>

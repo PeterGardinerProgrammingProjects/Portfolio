@@ -39,7 +39,36 @@
     </h2>
 
     <p class="paragraph">
-      GPU text
+      GPU stands for Graphics Processing Unit. Historically, graphics 
+      was about all GPUs did, but now they are used for all kinds of
+      parallel computations. The GPU differs from the CPU in one 
+      fundemental way: it does calculations in parallel to a much higher
+      degree. While the CPU has around 4-8 cores on average, the GPU 
+      has thousands of cores. This allows the GPU to complete certain 
+      tasks significantly faster.
+    </p>
+
+    <p class="paragraph">
+      Parallelizable problems are problems which can be split up into 
+      independent paths. An example would be rendering, or creating 
+      images to display on a screen. This is because rendering requires
+      that the same calculations are applied to each pixel, and pixels 
+      are independent from each other. This means that the GPU can 
+      assign each core only a few pixels, while the CPU would have to 
+      compute each pixel one at a time. The GPU is faster than the CPU 
+      for many problems, but most problems are not easily or effectively
+      parallelizable. For example, the CPU would be better at calculating 
+      the complex trajectory of a satalite traversing the solar system, 
+      because each position of the object depends on the last, requiring
+      sequential calcuation.
+    </p>
+
+    <p class="paragraph">
+      Each thread in a GPU is significantly less powerful than a CPU thread.
+      Also, GPUs are more limited at the hardware level. These compromises
+      are to maximise the speed of the GPU for the tasks it is designed for.
+      GPUs usually only support 16-bit floating point numbers, while CPUs
+      support 64-bit. This means that GPUs are much less numerically precise.
     </p>
 
     
